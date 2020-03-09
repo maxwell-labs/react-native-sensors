@@ -23,11 +23,17 @@ const nativeApis = new Map([
 const availableSensors = {};
 
 export function start(type) {
+  if (!type) {
+    return;
+  }
   const api = nativeApis.get(type.toLocaleLowerCase());
   api.startUpdates();
 }
 
 export function isAvailable(type) {
+  if (!type) {
+    return;
+  }
   if (availableSensors[type]) {
     return availableSensors[type];
   }
@@ -40,16 +46,25 @@ export function isAvailable(type) {
 }
 
 export function stop(type) {
+  if (!type) {
+    return;
+  }
   const api = nativeApis.get(type.toLocaleLowerCase());
   api.stopUpdates();
 }
 
 export function setUpdateInterval(type, updateInterval) {
+  if (!type) {
+    return;
+  }
   const api = nativeApis.get(type.toLocaleLowerCase());
   api.setUpdateInterval(updateInterval);
 }
 
 export function setLogLevelForType(type, level) {
+  if (!type) {
+    return;
+  }
   const api = nativeApis.get(type.toLocaleLowerCase());
   api.setLogLevel(level);
 }
